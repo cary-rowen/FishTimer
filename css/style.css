@@ -1,0 +1,345 @@
+:root {
+    --primary-color: #e74c3c;
+    --secondary-color: #2c3e50;
+    --background-color: #f5f6fa;
+    --text-color: #2c3e50;
+    --border-radius: 8px;
+    --spacing: 20px;
+}
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: var(--spacing);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing);
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing);
+    font-size: 2.5rem;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: var(--spacing);
+}
+
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background-color: #34495e;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: var(--spacing);
+}
+
+label {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+input, select {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+.timer-display {
+    text-align: center;
+    margin: var(--spacing) 0;
+}
+
+.session-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.session-subtext {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.timer {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: var(--spacing) 0;
+    font-family: monospace;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: var(--spacing);
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+#pauseBtn, #stopBtn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+#pauseBtn:hover, #stopBtn:hover {
+    background-color: #34495e;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+button:focus,
+*:focus,
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing);
+}
+
+.history-stats {
+    background-color: #f8f9fa;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: var(--spacing);
+}
+
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.records-table th,
+.records-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+}
+
+.records-table th {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
+
+.records-table tr:hover,
+.templates-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.status-complete {
+    color: #27ae60;
+}
+
+.status-stopped {
+    color: #e74c3c;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .timer {
+        font-size: 3rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .history-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .templates-table {
+        font-size: 0.9rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #ff0000;
+        --secondary-color: #000000;
+        --text-color: #000000;
+        --background-color: #ffffff;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal h2 {
+    margin-bottom: var(--spacing);
+    text-align: center;
+}
+
+.modal .input-group {
+    margin-bottom: 15px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.templates-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing);
+}
+
+.templates-table th,
+.templates-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.templates-table th {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.templates-table button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+.templates-table button.delete-template-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.templates-table button.delete-template-btn:hover {
+    background-color: #c0392b;
+}
+
+.templates-table button.start-template-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.templates-table button.start-template-btn:hover {
+    background-color: #c0392b;
+}

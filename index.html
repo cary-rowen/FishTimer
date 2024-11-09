@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄钟 - 专注时间管理工具</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container" role="main">
+        <div id="mainView">
+            <h1>番茄钟</h1>
+            <div class="nav-buttons">
+                <button id="viewHistoryBtn" class="secondary-btn" aria-label="查看历史记录">
+                    查看历史记录
+                </button>
+                <button id="openWizardBtn" class="secondary-btn" aria-label="创建番茄任务">
+                    创建番茄任务
+                </button>
+            </div>
+
+            <table class="templates-table">
+                <thead>
+                    <tr>
+                        <th>模板名称</th>
+                        <th>专注时长（分钟）</th>
+                        <th>短休息时长（分钟）</th>
+                        <th>长休息时长</th>
+                        <th>番茄钟个数</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="templatesTableBody">
+                </tbody>
+            </table>
+
+            <div id="timerDisplaySection" class="timer-display hidden">
+                <div id="sessionName" class="session-name"></div>
+                <div id="sessionSubtext" class="session-subtext"></div>
+                <div id="timer" class="timer" role="timer">00:00</div>
+            </div>
+
+            <div class="controls hidden" role="group" aria-label="计时器控制">
+                <button id="pauseBtn" disabled aria-label="暂停计时" class="hidden">暂停</button>
+                <button id="stopBtn" disabled aria-label="停止计时" class="hidden">停止</button>
+                <div class="input-group">
+                    <label>
+                        <input type="checkbox" id="hideTimerCheckbox">
+                        隐藏计时器
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="wizardModal" class="modal hidden">
+            <form id="wizardForm" class="modal-content">
+                <h2>创建番茄任务</h2>
+                <div class="input-group">
+                    <label for="taskName">任务名称</label>
+                    <input type="text" id="taskName" name="taskName" required>
+                </div>
+                <div class="input-group">
+                    <label for="focusDuration">专注时长（分钟）</label>
+                    <input type="number" id="focusDuration" name="focusDuration" min="1" value="25" required>
+                </div>
+                <div class="input-group">
+                    <label for="shortBreakDuration">短休息时长（分钟）</label>
+                    <input type="number" id="shortBreakDuration" name="shortBreakDuration" min="1" value="5" required>
+                </div>
+                <div class="input-group">
+                    <label for="numberOfPomodoros">番茄钟个数</label>
+                    <input type="number" id="numberOfPomodoros" name="numberOfPomodoros" min="1" value="4" required>
+                </div>
+                <div class="input-group">
+                    <label for="longBreakDuration">长休息时长</label>
+                    <select id="longBreakDuration" name="longBreakDuration">
+                        <option value="none">无</option>
+                        <option value="5">5分钟</option>
+                        <option value="10">10分钟</option>
+                        <option value="15" selected>15分钟</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="saveTemplate">保存为模板</label>
+                    <input type="checkbox" id="saveTemplate" name="saveTemplate">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit">开始</button>
+                    <button type="button" id="closeWizardBtn">取消</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="historyView" class="hidden">
+            <div class="history-header">
+                <h1>历史记录</h1>
+                <div class="history-actions">
+                    <button id="clearHistoryBtn" class="danger-btn" aria-label="清空历史记录">
+                        清空记录
+                    </button>
+                    <button id="backToMainBtn" class="secondary-btn" aria-label="返回主页">
+                        返回主页
+                    </button>
+                </div>
+            </div>
+            <div class="history-stats">
+                <div class="stat-item">
+                    <span class="stat-label">总专注次数：</span>
+                    <span id="totalSessions">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">总专注时间：</span>
+                    <span id="totalTime">0分钟</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">完成率：</span>
+                    <span id="completionRate">0%</span>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="recordsTable" class="records-table">
+                    <thead>
+                        <tr>
+                            <th>任务名称</th>
+                            <th>计划时长</th>
+                            <th>实际时长</th>
+                            <th>状态</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordsList"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
